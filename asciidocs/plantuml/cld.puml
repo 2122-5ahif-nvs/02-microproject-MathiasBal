@@ -1,0 +1,32 @@
+@startuml
+
+class Product{
+    *id Long
+    productName String
+    materialType String
+    productionCost double
+    totalCost double
+}
+
+class Order{
+    *id Long
+    orderByDate LocalDate
+    customer Customer
+}
+
+class Customer{
+    *id Long
+    clientName String
+    address String
+}
+
+class OrderDetails{
+    *orderDetails Long
+    product Product
+    order Order
+}
+
+Customer "1" -> "*" Order: places >
+Order "*" <- "*" Product: holds >
+(Order, Product) .. OrderDetails
+@enduml

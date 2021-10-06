@@ -1,0 +1,30 @@
+= Production Management
+Mathias Bal
+1.0.0, 2021-10-06
+ifndef::imagesdir[:imagesdir: images]
+
+:sourcedir: ../src/main/java
+:icons: font
+:sectnums:
+ifdef::backend-html5[]
+
+== Description
+The idea of this production management was to create a product.
+The customer places an order which then adds the product which said customer wants.
+
+== Class Diagram
+[plantuml, cld, png, align=left]
+----
+include::plantuml/cld.puml[]
+----
+
+=== Special variables
+* totalCost: +
+The total cost is made out of the production cost and the price of the material.
+
+== Use-Case Diagram
+
+[plantuml, ucd, png, align=left]
+----
+include::plantuml/ucd.puml[]
+----
