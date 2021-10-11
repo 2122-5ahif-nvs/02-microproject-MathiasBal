@@ -1,0 +1,11 @@
+@startuml
+left to right direction
+:Producer:
+:Customer:
+rectangle Production-Management {
+Producer -left- (create product)
+Customer -right- (create customer)
+Customer -up- (order product)
+Producer -- (delete order)
+}
+@enduml
