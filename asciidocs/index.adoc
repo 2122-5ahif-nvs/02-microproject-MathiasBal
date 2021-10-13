@@ -1,6 +1,6 @@
 = Production Management
 Mathias Bal
-1.0.0, 2021-10-06
+1.0.4, 2021-10-06
 ifndef::imagesdir[:imagesdir: images]
 
 :sourcedir: ../src/main/java
@@ -12,7 +12,7 @@ ifdef::backend-html5[]
 The idea of this production management was to create a product.
 The customer places an order which then adds the product which said customer wants.
 
-== Class Diagram
+== Class diagram
 [plantuml, cld, png, align=left]
 ----
 include::plantuml/cld.puml[]
@@ -22,8 +22,7 @@ include::plantuml/cld.puml[]
 * totalCost: +
 The total cost is made out of the production cost and the price of the material.
 
-== Use-Case Diagram
-
+== Use-case diagram
 [plantuml, ucd, png, align=left]
 ----
 include::plantuml/ucd.puml[]

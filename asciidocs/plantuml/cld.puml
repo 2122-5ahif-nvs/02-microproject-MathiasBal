@@ -4,8 +4,7 @@ class Product{
     *id Long
     productName String
     materialType String
-    productionCost double
-    totalCost double
+    productionCost Double
 }
 
 class Order{
@@ -17,13 +16,16 @@ class Order{
 class Customer{
     *id Long
     clientName String
-    address String
+    streetName String
+    streetNumber String
+    areaCode Long
 }
 
 class OrderDetails{
     *orderDetails Long
     product Product
     order Order
+    numberOfProducts Long
 }
 
 Customer "1" -> "*" Order: places >
