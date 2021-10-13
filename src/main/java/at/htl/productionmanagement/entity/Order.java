@@ -1,7 +1,9 @@
 package at.htl.productionmanagement.entity;
 
 import at.htl.productionmanagement.repository.LocalDateAdapter;
+import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
+import javax.json.bind.annotation.JsonbProperty;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
@@ -10,14 +12,24 @@ import java.util.Objects;
 
 @Entity(name = "Orders")
 @XmlRootElement
+@Schema(description = "The order saves what client orders what product.")
 public class Order {
     @Id
+    @Schema(required = true)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long productId;
+    private Long id;
+
+    @Schema(required = true)
+    @JsonbProperty("order_number")
     private Long orderNumber;
+
+    @Schema(required = true)
     @ManyToOne
     private Client client;
 
+    @Schema(required = true)
+    @JsonbProperty("order_date")
+    @Column(name = "order_date", nullable = false)
     @XmlJavaTypeAdapter(type=LocalDate.class, value= LocalDateAdapter.class)
     private LocalDate orderDate;
 

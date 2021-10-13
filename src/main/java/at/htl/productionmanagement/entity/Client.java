@@ -1,19 +1,29 @@
 package at.htl.productionmanagement.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import org.eclipse.microprofile.openapi.annotations.media.Schema;
+
+import javax.json.bind.annotation.JsonbProperty;
+import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Objects;
 
 @Entity
 @XmlRootElement
+@Schema(description = "Store information about a client.")
 public class Client {
     @Id
+    @Schema(required = true)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "c_id")
     private Long id;
+
+    @Schema(required = true)
+    @JsonbProperty("client_name")
+    @Column(name = "c_name")
     private String clientName;
+
+    @Schema(required = true)
+    @Column(name = "address")
     private String address;
 
     public Client(Long id, String clientName, String address) {

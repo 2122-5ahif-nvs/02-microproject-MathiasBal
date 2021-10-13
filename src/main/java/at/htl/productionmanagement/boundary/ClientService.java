@@ -2,6 +2,8 @@ package at.htl.productionmanagement.boundary;
 
 import at.htl.productionmanagement.entity.Client;
 import at.htl.productionmanagement.repository.ClientRepository;
+import org.eclipse.microprofile.openapi.annotations.Operation;
+import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
@@ -9,16 +11,23 @@ import javax.ws.rs.core.*;
 import java.util.List;
 
 @Path("api/client")
+@Tag(name = "Client")
 public class ClientService {
     @Inject
     ClientRepository repository;
 
+    @Operation(
+            summary = "Return all customers"
+    )
     @GET
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     public List<Client> findAllClients() {
         return repository.getClients();
     }
 
+    @Operation(
+            summary = "Return one customer with specific id"
+    )
     @GET
     @Path("{id}")
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
@@ -30,6 +39,9 @@ public class ClientService {
         return Response.ok(repository.findByClientId(id)).build();
     }
 
+    @Operation(
+            summary = "Create new customer"
+    )
     @POST
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})

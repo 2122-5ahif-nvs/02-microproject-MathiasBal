@@ -1,5 +1,8 @@
 package at.htl.productionmanagement.entity;
 
+import org.eclipse.microprofile.openapi.annotations.media.Schema;
+
+import javax.json.bind.annotation.JsonbProperty;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,15 +13,30 @@ import java.util.Objects;
 @Entity
 @XmlRootElement
 public class Product {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long productId;
+    @Id
+    @Schema(required = true)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Schema(required = true)
+    @JsonbProperty("product_name")
     private String productName;
+
+    @Schema(required = true)
+    @JsonbProperty("material_type")
     private String materialType;
-    private double productionCost, totalCost;
+
+    @Schema(required = true)
+    @JsonbProperty("production_cost")
+    private double productionCost;
+
+    @Schema(required = true)
+    @JsonbProperty("total_cost")
+    private double totalCost;
 
     public Product(String productName, Long productId, String materialType, double productionCost, double totalCost) {
         this.productName = productName;
-        this.productId = productId;
+        this.id = productId;
         this.materialType = materialType;
         this.productionCost = productionCost;
         this.totalCost = totalCost;
@@ -35,9 +53,9 @@ public class Product {
         this.productName = productName;
     }
 
-    public Long getProductId() { return productId; }
+    public Long getProductId() { return id; }
 
-    public void setProductId(Long productID) { this.productId = productID; }
+    public void setProductId(Long productID) { this.id = productID; }
 
     public String getMaterialType() {
         return materialType;
@@ -65,7 +83,7 @@ public class Product {
 
     @Override
     public String toString() {
-        return "Product: " + productName + ", " + productId + ", " + materialType + ", " + productionCost + ", " + totalCost;
+        return "Product: " + productName + ", " + id + ", " + materialType + ", " + productionCost + ", " + totalCost;
     }
 
     @Override

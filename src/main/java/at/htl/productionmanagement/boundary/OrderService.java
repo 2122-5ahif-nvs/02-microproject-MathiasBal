@@ -2,6 +2,7 @@ package at.htl.productionmanagement.boundary;
 
 import at.htl.productionmanagement.entity.Order;
 import at.htl.productionmanagement.repository.OrderRepository;
+import org.eclipse.microprofile.openapi.annotations.Operation;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
@@ -13,12 +14,18 @@ public class OrderService {
     @Inject
     OrderRepository repository;
 
+    @Operation(
+            summary = "Return all orders"
+    )
     @GET
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     public List<Order> findAllOrders() {
         return repository.getOrders();
     }
 
+    @Operation(
+            summary = "Return order with specific id"
+    )
     @GET
     @Path("{id}")
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
@@ -30,6 +37,9 @@ public class OrderService {
         return Response.ok(repository.findByOrderNumber(id)).build();
     }
 
+    @Operation(
+            summary = "Issue a new order"
+    )
     @POST
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})

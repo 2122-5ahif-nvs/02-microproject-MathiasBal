@@ -2,6 +2,7 @@ package at.htl.productionmanagement.boundary;
 
 import at.htl.productionmanagement.entity.Product;
 import at.htl.productionmanagement.repository.ProductRepository;
+import org.eclipse.microprofile.openapi.annotations.Operation;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
@@ -13,12 +14,18 @@ public class ProductService {
     @Inject
     ProductRepository repository;
 
+    @Operation(
+            summary = "Return all products"
+    )
     @GET
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     public List<Product> findAllProducts() {
         return repository.getProducts();
     }
 
+    @Operation(
+            summary = "Return product with specific id"
+    )
     @GET
     @Path("{id}")
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
@@ -30,6 +37,9 @@ public class ProductService {
         return Response.ok(repository.findByProductId(id)).build();
     }
 
+    @Operation(
+            summary = "Create a new order"
+    )
     @POST
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
